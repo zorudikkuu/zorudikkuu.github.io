@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPP Code | Java Developer Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">SPP Code</div>
+            <nav>
+                <ul>
+                    <li><a href="#portfolio">Портфолио</a></li>
+                    <li><a href="#skills">Навыки</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Кирилл | Java Developer</h1>
+            <p class="subtitle">Автоматизация бизнес-процессов, парсинг данных, телеграм-боты</p>
+            <a href="#portfolio" class="btn">Смотреть кейсы</a>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2>Ключевые проекты</h2>
+            
+            <!-- Кейс 1: P2P Автопилот -->
+            <div class="project">
+                <div class="project-header">
+                    <h3>🤖 P2P-автопилот для биржи</h3>
+                    <span class="tag">Java</span>
+                    <span class="tag">Spring Boot</span>
+                    <span class="tag">REST API</span>
+                </div>
+                
+                <div class="project-content">
+                    <div class="project-image">
+                        <img src="images/p2p-screen.jpg" alt="Демонстрация P2P-автопилота">
+                    </div>
+                    
+                    <div class="project-details">
+                        <div class="challenge">
+                            <h4>Задача клиента</h4>
+                            <p>Трейдер терял 15-20% выгодных сделок на P2PParadise из-за ручного мониторинга. Нужен инструмент для мгновенного поиска и принятия заявок по заданным критериям.</p>
+                        </div>
+                        
+                        <div class="solution">
+                            <h4>Решение</h4>
+                            <p>Разработал алгоритм, который каждую секунду сканирует новые заявки, фильтрует их по цене и дате, автоматически принимает подходящие и блокирует обработанные в черном списке.</p>
+                            <pre><code>while (true) {
+    List&lt;Bid&gt; bids = exchangeService.loadNewBids();
+    bids.removeIf(blacklist::contains);
+    
+    Bid target = bids.stream()
+        .filter(b -> b.price() >= minPrice && b.price() <= maxPrice)
+        .findFirst()
+        .orElse(null);
+
+    if (target != null) {
+        exchangeService.acceptBid(target.id());
+        blacklist.add(target.id());
+    }
+    Thread.sleep(5000);
+}</code></pre>
+                        </div>
+                        
+                        <div class="results">
+                            <h4>Результаты</h4>
+                            <div class="results-grid">
+                                <div class="result-card">
+                                    <div class="number">100%</div>
+                                    <div class="label">покрытие сделок</div>
+                                </div>
+                                <div class="result-card">
+                                    <div class="number">+40%</div>
+                                    <div class="label">к прибыли клиента</div>
+                                </div>
+                                <div class="result-card">
+                                    <div class="number">1 сек</div>
+                                    <div class="label">реакция на новые заявки</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Кейс 2: Парсер ЖКХ -->
+            <div class="project">
+                <div class="project-header">
+                    <h3>📊 Парсер ЖКХ + Telegram-бот</h3>
+                    <span class="tag">Java</span>
+                    <span class="tag">Telegram API</span>
+                    <span class="tag">Apache POI</span>
+                </div>
+                
+                <div class="project-content">
+                    <div class="project-details">
+                        <div class="challenge">
+                            <h4>Задача клиента</h4>
+                            <p>Call-центр тратил 120 000 ₽/мес на ручной сбор данных 20 практикантами. Процесс занимал 15 дней с 30% ошибок в данных.</p>
+                        </div>
+                        
+                        <div class="solution">
+                            <h4>Решение</h4>
+                            <p>Создал Telegram-бота, который по команде парсит данные с сайтов ЖКХ, генерирует Excel-отчет с аналитикой и автоматически загружает в облако.</p>
+                            <ul>
+                                <li>Автоматический обход капчи через AntiCaptcha API</li>
+                                <li>Валидация и автокоррекция адресов</li>
+                                <li>Динамические графики в Excel с помощью Apache POI</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="results">
+                            <h4>Результаты</h4>
+                            <div class="results-grid">
+                                <div class="result-card">
+                                    <div class="number">117K ₽</div>
+                                    <div class="label">экономия в месяц</div>
+                                </div>
+                                <div class="result-card">
+                                    <div class="number">99.8%</div>
+                                    <div class="label">точность данных</div>
+                                </div>
+                                <div class="result-card">
+                                    <div class="number">45 мин</div>
+                                    <div class="label">вместо 15 дней</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-image">
+                        <img src="images/parser-screen.jpg" alt="Демонстрация Telegram-бота">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2>Технологический стек</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Основные</h3>
+                    <ul>
+                        <li>Java 11-17</li>
+                        <li>Spring Framework</li>
+                        <li>Spring Boot</li>
+                        <li>Hibernate</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Базы данных</h3>
+                    <ul>
+                        <li>PostgreSQL</li>
+                        <li>MongoDB</li>
+                        <li>Redis</li>
+                        <li>MySQL</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Инструменты</h3>
+                    <ul>
+                        <li>Apache Kafka</li>
+                        <li>Docker</li>
+                        <li>Git</li>
+                        <li>Apache POI</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Интеграции</h3>
+                    <ul>
+                        <li>Telegram Bot API</li>
+                        <li>Google Sheets API</li>
+                        <li>RESTful Web Services</li>
+                        <li>Web Scraping</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacts" class="contacts">
+        <div class="container">
+            <h2>Готов к новым вызовам!</h2>
+            <p>Ищу интересные проекты в сфере автоматизации, разработки ботов и backend-решений</p>
+            
+            <div class="contact-methods">
+                <div class="contact-card">
+                    <div class="icon">✉️</div>
+                    <h3>Telegram</h3>
+                    <a href="https://t.me/SPP_code" target="_blank">@SPP_code</a>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="icon">📱</div>
+                    <h3>Email</h3>
+                    <a href="mailto:winskir81@gmail.com">winskir81@gmail.com</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 SPP Code | Принцип Суперпозиции в Действии</p>
+        </div>
+    </footer>
+</body>
+</html>
